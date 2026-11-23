@@ -2,6 +2,7 @@ package com.vikas.ecommerce.inventory_micro_service.controller;
 
 import com.vikas.ecommerce.inventory_micro_service.dto.ProductDto;
 import com.vikas.ecommerce.inventory_micro_service.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -26,11 +27,14 @@ public class ProductController {
     private final RestClient restClient;
 
     @GetMapping("/fetchOrders")
-    public String fetchFromOrdersService() {
+    public String fetchFromOrdersService(HttpServletRequest httpServletRequest) {
+
+        log.info(httpServletRequest.getHeader("x-custom-header"));
+
         ServiceInstance orderService = discoveryClient.getInstances("order-micro-service").getFirst();
 
         return restClient.get()
-                .uri(orderService.getUri() + "/api/v1/orders/helloOrders")
+                .uri(orderService.getUri()+"/orders/core/helloOrders")
                 .retrieve()
                 .body(String.class);
     }

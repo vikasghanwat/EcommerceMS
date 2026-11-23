@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: order-micro-service
+          uri: lb://ORDER-MICRO-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+
+        - id: inventory-micro-service
+          uri: lb://INVENTORY-MICRO-SERVICE
+          predicates:
+            - Path=/api/v1/inventory/**
+          filters:
+            - StripPrefix=2
+            - AddRequestHeader=X-Custom-Header, Vikas
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8080
