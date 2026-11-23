@@ -10,7 +10,7 @@
         <module name="api-gateway" />
         <module name="discovery-service" />
       </profile>
-      <profile name="Annotation profile for inventory-micro-service" enabled="true">
+      <profile name="Annotation profile for order-micro-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,15 +18,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
         </processorPath>
         <module name="inventory-micro-service" />
-      </profile>
-      <profile name="Annotation profile for order-micro-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
-        </processorPath>
         <module name="order-micro-service" />
       </profile>
     </annotationProcessing>
